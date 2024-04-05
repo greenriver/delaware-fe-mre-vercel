@@ -1,0 +1,21 @@
+schema:
+  - ${GRAPHQL_API}:
+      headers:
+        Content-Type: application/json
+        X-AUTH-TOKEN: ${GRAPHQL_API_AUTH_KEY}
+        Authorization: ${GRAPHQL_API_BASIC_AUTH}
+overwrite: true
+documents: "src/graphqlApi/**/**.graphql"
+generates:
+  ./src/graphqlApi/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-generic-sdk
+      - fragment-matcher
+    config:
+      preResolveTypes: true
+      enumsAsConst: true
+      scalars:
+        NodeDescription: NodeDescription
+        ISO8601Date: string

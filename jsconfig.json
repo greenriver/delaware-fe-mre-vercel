@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2021",
+    "baseUrl": "./src",
+    "checkJs": false
+  },
+  "moduleDirectories": ["src", "node_modules"]
+  // "exclude": ["node_modules", "**/node_modules/*", ".next"]
+}

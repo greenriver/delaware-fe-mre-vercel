@@ -1,0 +1,11 @@
+src/graphqlApi/types.ts
+node_modules/*
+.next/
+src/common/util/fixtureData.ts
+src/common/util/fixtureData/censusTracts.ts
+src/common/util/fixtureData/navItems
+!.storybook
+.storybook/
+src/common/components/LocationSwitcher/util/fixtures.ts
+tmp/
+src/common/components/LocationSwitcher/util/allLocationsBasicData.ts

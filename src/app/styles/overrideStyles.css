@@ -1,0 +1,23 @@
+.highcharts-title {
+  width: 95% !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+.highcharts-exporting-group {
+  z-index: 7 !important;
+}
+
+.highcharts-tooltip .mui-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.highcharts-tooltip .mui-icon path {
+  transform: scale(0.75);
+}
+
+.highcharts-tooltip > span {
+  min-width: fit-content;
+  max-width: 500px;
+}

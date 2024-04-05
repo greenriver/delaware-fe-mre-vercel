@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": false,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "public/*": ["../public/*"],
+      "@/root/*": ["../*"],
+      "@/graphqlApi/*": ["graphqlApi/*"],
+      "@/common/*": ["common/*"],
+      "@/modules/*": ["modules/*"],
+      "@/pages/*": ["pages/*"],
+      "@/layout/*": ["layout/*"],
+      "@/__test__/*": ["__test__/*"],
+      "@/.storybook/*": ["../.storybook/*"]
+    },
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2021"
+  },
+  "exclude": ["node_modules", "untracked", ".next", "package-lock.json", "package.json"],
+  "include": [
+    "next-env.d.ts",
+    "./app/global-types.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".storybook/*.ts",
+    ".storybook/*.tsx",
+    "src/common/components/IndicatorTable/IndicatorTableContentWrapper/IndicatorModal.test.js"
+  ],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
+  "tsBuildInfoFile": ".tsbuildinfo" // https://github.com/azz/jest-runner-tsc/issues/21
+}

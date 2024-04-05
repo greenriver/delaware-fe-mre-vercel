@@ -1,0 +1,480 @@
+.print-only,
+.print-only-block {
+  display: none !important;
+}
+
+.print-break-inside-avoid {
+  page-break-inside: avoid !important;
+}
+
+.web-only-no-pdf {
+  display: flex !important;
+}
+
+#table-of-contents table thead tr th:last-of-type div {
+  display: none;
+}
+
+footer.pdf-footer {
+  padding-top: .15in;
+  padding-bottom: .15in;
+}
+
+/* Header ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.pdf-header {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.pdf-header__dates {
+  display: flex;
+}
+
+.pdf-header {
+  padding: 40px;
+  padding-bottom: 0;
+}
+
+.pdf-header,
+.pdf-header__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.pdf-header__logo-container {
+  margin-right: 16px;
+  height: 100px;
+  width: 100px;
+}
+
+.pdf-header__info-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.pdf-header__info-logo {
+  margin-bottom: 8px;
+  height: 80px;
+  width: 400px;
+}
+
+.pdf-header__info-text,
+.pdf-header__info-seperator {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  font-style: italic;
+}
+
+.pdf-header__info-seperator {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.pdf-header__dates span {
+  font-size: 6pt !important;
+  line-height: 8pt !important;
+}
+
+.svg-icon-wrapper {
+  display: flex;
+}
+
+/* Footer ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.pdf-footer {
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.pdf-footer p,
+.pdf-footer span {
+  font-size: 8pt !important;
+  line-height: 10pt !important;
+}
+
+.pdf-footer__logo-container {
+  padding-right: 16px;
+  width: 600px;
+  height: 50px;
+}
+
+.pdf-footer__info-wrapper {
+  flex: 1;
+}
+
+.pdf-footer__info-container {
+  padding-bottom: 2px;
+  border-bottom: #E5E5E5 solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+footer .pdf-footer__info-page-number {
+  content: counter(page);
+  font-weight: bold !important;
+  font-weight: 700 !important;
+}
+
+.pdf-footer__info-seperator {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.pdf-footer__info-url {
+  padding-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media print {
+
+  /* Page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  @page {
+    size: US-Letter;
+    prince-pdf-page-colorspace: rgb;
+    margin-left: .125in;
+    margin-right: .125in;
+    margin-top: .25in;
+    margin-bottom: .65in;
+
+    @bottom {
+      content: flow(pdf-footer);
+      height: .65in;
+    }
+  }
+
+  @page:first {
+    margin-top: 0
+  }
+
+  @page content-page {
+    @bottom {
+      content: flow(pdf-footer);
+      height: .65in;
+    }
+  }
+
+  /* Layout ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  header,
+  aside {
+    display: none;
+  }
+
+  section {
+    border: 0 !important;
+  }
+
+  section#overview {
+    padding-top: 0;
+  }
+
+  section#overview .content-card-header {
+    display: none;
+  }
+
+  section#overview > div article:first-of-type {
+    margin-top: .25in;
+  }
+
+  .content-page:not(:last-of-type) {
+    page-break-after: always;
+  }
+
+  .content-card-header > div > div:first-of-type {
+    max-width: 65%;
+    min-width: 65%;
+}
+  .content-card-header > div > div:last-of-type {
+    max-width: 35%;
+    min-width: 35%;
+  }
+
+  .content-card-header div div:first-of-type p:first-of-type {
+    display: none;
+  }
+
+  footer.pdf-footer {
+    prince-flow: static(pdf-footer, start);
+    padding-top: .15in;
+    padding-bottom: .15in;
+  }
+
+  .kpi-group > div {
+    margin-right: .1in;
+  }
+
+  .kpi-group > div:last-of-type {
+    margin-right: 0;
+  }
+
+  article.sub-section {
+    margin-bottom: 12mm;
+  }
+
+  /* Typography ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  h1, h2, h3, h4, p {
+    font-family: "Open Sans", sans-serif;
+  }
+
+  h1, .MuiTypography-h1 {
+    margin: 0px;
+    font-size: 18pt !important;
+    line-height: 22pt !important;
+    font-weight: lighter !important;
+    font-weight: 300 !important;
+  }
+
+  h2, .MuiTypography-h2 {
+    margin: 0px;
+    font-size: 14pt !important;
+    line-height: 18pt !important;
+    font-weight: normal !important;
+    font-weight: 400 !important;
+  }
+
+  h3, .MuiTypography-h3 {
+    font-size: 12pt !important;
+    line-height: 16pt !important;
+    font-weight: normal !important;
+    font-weight: 400 !important;
+  }
+
+  h4 {
+    font-size: 9pt !important;
+    line-height: 13pt !important;
+    font-weight: normal !important;
+    font-weight: 400 !important;
+  }
+  h5, .MuiTypography-h5 {
+    font-size: 8pt !important;
+    line-height: 12pt !important;
+    font-weight: bold !important;
+    font-weight: 700 !important;
+  }
+
+  p,
+  a,
+  span,
+  p::after,
+  span::after,
+  table thead th,
+  table thead th div,
+  table thead th span,
+  table tbody td,
+  table tbody td div,
+  table tbody td span,
+  .MuiAlert-message,
+  .MuiChip-root span {
+    font-size: 8pt !important;
+    line-height: 12pt !important;
+    font-weight: normal !important;
+  }
+
+  table tbody td > div {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  table thead tr:last-of-type th,
+  table thead tr:last-of-type th div,
+  table thead tr:last-of-type th span {
+    font-weight: 600 !important;
+    font-weight: bold !important;
+    color: black !important;
+  }
+
+  table tbody tr {
+    page-break-inside: avoid;
+  }
+
+  p[section] {
+    font-style: italic;
+  }
+
+  .sub-section table thead th span svg {
+    display: none;
+  }
+
+  /* .MuiPaper-outlined {
+    border: none !important;
+  } */
+
+  /* Components ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  /* Components: KPI ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* Adjust typography and size of icons    */
+  .kpi .MuiTypography-caption {
+    font-size: 6pt !important;
+    line-height: 10pt !important;
+  }
+
+  .kpi a svg {
+    height: 3.5mm !important;
+    width: 3.5mm !important;
+  }
+
+  /* Components: KPI ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* Adjust typography and size of icons    */
+  .sectioned-slider p.MuiTypography-h3 {
+    font-weight: bold !important;
+    font-weight: 700 !important;
+  }
+
+  /* Components: ContentCardHeader ~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* Hide the content card header in the overview section    */
+  #overview .content-card-header {
+    display: none !important;
+  }
+
+  /* ToC ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  #table-of-contents .section {
+    font-style: itelic;
+    color: rgba(0, 0, 0, .5);
+  }
+
+  #table-of-contents a {
+    color: black !important;
+    text-decoration: none;
+  }
+
+  #table-of-contents .section::after {
+    content: "Page " target-counter(attr(section), page);
+  }
+
+  #table-of-contents table thead th:last-of-type div {
+    display: none;
+  }
+
+  #table-of-contents table thead th,
+  #table-of-contents table tbody td {
+    padding: 2mm  5mm !important;
+  }
+
+  #table-of-contents table tbody td:last-of-type p,
+  #table-of-contents table tbody td:last-of-type div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #table-of-contents table tbody td:last-of-type div,
+  #table-of-contents table tbody td:last-of-type span {
+    text-align: right;
+  }
+
+  /* Card Header Map ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  .card-header-map__wrapper {
+    flex: 1;
+    height: 200px;
+  }
+
+  .card-header-map,
+  .leaflet-container {
+    overflow: hidden;
+    background: white !important;
+  }
+
+  .leaflet-control-attribution,
+  .leaflet-control-attribution a {
+    font-size: 4pt !important;
+  }
+
+  /* Components: Alert ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  .pdf-info-alert {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    font-weight: normal;
+    background-color: rgb(229, 246, 253);
+    display: flex;
+    padding: 6px 16px;
+    color: rgb(1, 67, 97);
+  }
+
+  table .pdf-info-alert {
+    max-width: 60%;
+  }
+
+  .pdf-info-alert .MuiAlert-icon {
+    color: #03a9f4;
+  }
+
+  .pdf-info-alert .MuiAlert-message {
+    padding: 8px 0;
+  }
+
+  .pdf-info-alert a {
+    color: black;
+  }
+
+  .pdf-info-alert svg {
+    fill: #03a9f4;
+  }
+
+  table thead .pdf-info-alert {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .suppression-context {
+    padding: 10px 16px;
+  }
+
+  /* MUI overrides ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  .svg-icon-wrapper {
+    width: 4.5mm;
+    display: flex;
+    align-items: center;
+  }
+
+  .svg-icon-wrapper > svg {
+    height: 3.5mm !important;
+    width: 3.5mm !important;
+  }
+
+  .MuiChip-root {
+    height: 5mm !important;
+  }
+
+  .MuiChip-label {
+    padding-left: 6mm;
+    padding-right: 6mm;
+  }
+
+  .MuiDivider-root {
+    margin-bottom: 50px !important;
+  }
+
+  /* Utilities ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  .print-only {
+    display: flex !important;
+  }
+
+  .print-only-block {
+    display: block !important;
+  }
+
+  .web-only-no-pdf {
+    display: none !important;
+  }
+}

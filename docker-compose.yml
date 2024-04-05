@@ -1,0 +1,95 @@
+# If you're looking for the previous behavior that supports vscode and static
+# host ports on 3000, etc. then copy docker-compose.override.yml.vscode to
+# docker-compose.override.yml
+#
+# I don't know a way to remove things in the override, so I've moved locking in
+# static ports and the vscode-supporting volume structure to the override file.
+#
+# Make sure to have this docker-compose.override.yml file on your host. If it's
+# just on the filesystem inside the container, `docker compose up won't see it`
+
+version: "3.7"
+
+x-app: &app
+  stdin_open: true
+  tty: true
+  image: delaware-ephtn-frontend:2.0
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+    args:
+      USER_ID: ${USER_ID:-10000}
+      GROUP_ID: ${GROUP_ID:-10000}
+
+services:
+  dev:
+    <<: *app
+    container_name: dephtn_next
+    environment:
+      FQDN: ${FQDN:-dephtn-next.dev.test}
+      VIRTUAL_HOST: ${FQDN:-dephtn-next.dev.test}
+      VIRTUAL_PORT: 3000
+    command: "npm run dev"
+    ports:
+      - 3000
+    networks:
+      - nginx-proxy
+
+  production_build:
+    <<: *app
+    container_name: dephtn_next_prod
+    environment:
+      VIRTUAL_HOST: ${FQDN:-dephtn-next.dev.test}
+      VIRTUAL_PORT: 3000
+    profiles: ["manual"]
+    command: "npm run build_and_start"
+    ports:
+      - "3000"
+
+  runner:
+    <<: *app
+    profiles: ["manual"]
+    command: /bin/bash
+
+  storybook:
+    <<: *app
+    container_name: dephtn_storybook
+    environment:
+      VIRTUAL_HOST: dephtn-storybook.dev.test
+      VIRTUAL_PORT: 6006
+      STORYBOOK: 1
+    profiles: ["storybook"]
+    command: npm run storybook
+    ports:
+      - "6006:6006"
+    networks:
+      - nginx-proxy
+
+  storybook_tests:
+    <<: *app
+    container_name: dephtn_storybook_tests
+    profiles: ["storybook"]
+    environment:
+      TARGET_URL: "http://dephtn-storybook.dev.test"
+    command: npm run storybook-test
+    depends_on:
+      - storybook
+    networks:
+      - nginx-proxy
+
+  wba:
+    <<: *app
+    container_name: dephtn_wba
+    environment:
+      VIRTUAL_HOST: ${FQDN:-dephtn-wba.dev.test}
+      VIRTUAL_PORT: 8888
+      ANALYZE: "true"
+    profiles: ["manual"]
+    command: npm run analyze
+    ports:
+      - "8888"
+
+# docker network create nginx-proxy
+networks:
+  nginx-proxy:
+    external: true

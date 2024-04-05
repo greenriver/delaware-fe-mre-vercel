@@ -1,0 +1,15 @@
+{
+    "functions": {
+        "pages/portals/**/*": {
+            "maxDuration": 20,
+            "memory": 2048
+        },
+        "pages/topics/**/*": {
+            "maxDuration": 20,
+            "memory": 2048
+        },
+        "pages/api/revalidate.ts": {
+            "maxDuration": 30
+        }
+    }
+}
