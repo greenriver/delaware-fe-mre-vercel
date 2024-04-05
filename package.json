@@ -83,7 +83,7 @@
     "trim-newlines": "^4.0.2",
     "ts-jest": "^29.1.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "undici": "^5.27.0",
+    "undici": "^5.28.4",
     "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {
